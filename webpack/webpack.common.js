@@ -27,11 +27,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: [
-                '@babel/preset-env',
-                '@babel/preset-react',
-                '@babel/preset-typescript',
-              ],
+              presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
             },
           },
         ],
@@ -39,14 +35,14 @@ module.exports = {
       {
         test: /\.module\.css$/,
         use: [
-            'style-loader',
-            {
-                loader: 'css-loader',
-                options: {
-                    modules: true,
-                    esModule: false,
-                },
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              esModule: true,
             },
+          },
         ],
       },
       {
