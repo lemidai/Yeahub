@@ -1,0 +1,13 @@
+.app {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.app h1 {
+  color: #2c3e50;
+}
+
+.app p {
+  color: #7f8c8d;
+}
