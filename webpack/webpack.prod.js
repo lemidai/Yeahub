@@ -1,16 +1,21 @@
-const { merge } = require('webpack-merge');
-const path = require('path');
-const common = require('./webpack.common.js');
+import path from 'path';
+import { merge } from 'webpack-merge';
+import common from './webpack.common.js';
 
-module.exports = merge(common, {
+const __dirname = path.resolve();
+
+export default merge(common, {
   mode: 'production',
+
   devtool: 'source-map',
+
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, '..', './dist'),
+    path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/',
   },
+
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -20,11 +25,13 @@ module.exports = merge(common, {
           name: 'vendors',
           chunks: 'all',
         },
+
         react: {
           test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
           name: 'react-vendor',
           chunks: 'all',
         },
+
         redux: {
           test: /[\\/]node_modules[\\/](@reduxjs|react-redux)[\\/]/,
           name: 'redux-vendor',
@@ -32,6 +39,7 @@ module.exports = merge(common, {
         },
       },
     },
+
     runtimeChunk: 'single',
   },
 });

@@ -1,0 +1,25 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  padding-left: clamp(16px, 3vw, 40px);
+  padding-right: clamp(16px, 3vw, 40px);
+
+  padding-top: env(safe-area-inset-top, 8px);
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    padding-top: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .layout {
+    padding-top: 24px;
+  }
+}

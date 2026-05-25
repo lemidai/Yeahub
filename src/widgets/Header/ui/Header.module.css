@@ -1,0 +1,15 @@
+.header {
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 40px);
+}
+
+.auth {
+  display: flex;
+  gap: 20px;
+}
