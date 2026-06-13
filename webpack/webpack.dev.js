@@ -10,9 +10,14 @@ export default merge(common, {
   devtool: 'inline-source-map',
 
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'dist'),
-    },
+    static: [
+      {
+        directory: path.resolve(__dirname, 'dist'),
+      },
+      {
+        directory: path.resolve(__dirname, 'public'),
+      },
+    ],
     port: 3000,
     hot: true,
     open: true,

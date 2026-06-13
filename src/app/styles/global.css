@@ -1,12 +1,11 @@
 body {
-  font-family: var(--font-family);
-  color: var(--text-title);
+  /* min-height: 100vh; */
   background-color: var(--main-bg);
+  line-height: 140%;
+  font-family: var(--font-family);
   font-size: var(--font-size-l);
+  font-weight: var(--font-weight-med);
 }
 
-/* html,
-body,
-#root {
-  height: 100%;
-} */
+.container {
+}

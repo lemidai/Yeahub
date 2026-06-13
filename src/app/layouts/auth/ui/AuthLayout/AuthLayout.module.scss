@@ -1,0 +1,19 @@
+.layout {
+    // min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+.header {
+    display: none;
+    padding: 20px 30px;
+    @include mobile {
+        display: block;
+    }
+    @include mobileS {
+        padding: 12px 16px
+    }
+}

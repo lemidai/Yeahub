@@ -1,0 +1,32 @@
+{
+    "mentors": [
+        { "id": 1, "name": "Александр", "specialization": "Frontend developer", "avatar": "/images/img1.jpg", "address": {
+            "country": "Россия",
+            "city": "Нижний Новгород"
+        }},
+        { "id": 2, "name": "Денис", "specialization": "Frontend developer", "avatar": "/images/img2.jpg", "address": {
+            "country": "Россия",
+            "city": "Москва"
+        }},
+        { "id": 3, "name": "Дмитрий", "specialization": "Frontend developer", "avatar": "/images/img3.jpg", "address": {
+            "country": "Россия",
+            "city": "Санкт-Петербург"
+        }},
+        { "id": 4, "name": "Светлана", "specialization": "UI/UX designer", "avatar": "/images/img4.jpg", "address": {
+            "country": "Швеция",
+            "city": "Стокгольм"
+        }},
+        { "id": 5, "name": "Малика", "specialization": "UI/UX designer", "avatar": "/images/img5.jpg", "address": {
+            "country": "Россия",
+            "city": "Челябинск"
+        }},
+        { "id": 6, "name": "Юрий", "specialization": "Java developer", "avatar": "/images/img6.jpg", "address": {
+            "country": "Россия",
+            "city": "Владивосток"
+        }},
+        { "id": 7, "name": "Амаль", "specialization": "Web-designer", "avatar": "/images/img7.jpg", "address": {
+            "country": "Россия",
+            "city": "Москва"
+        }}
+    ]
+}

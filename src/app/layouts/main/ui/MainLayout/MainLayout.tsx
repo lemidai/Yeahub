@@ -1,7 +1,7 @@
 import { Footer } from '@/widgets/Footer';
-import { Header } from '@/widgets/Header';
+import { Header } from '@/widgets/MainHeader';
 import { Outlet } from 'react-router-dom';
-import styles from './MainLayout.module.css';
+import styles from './MainLayout.module.scss';
 
 export const MainLayout = () => {
   return (

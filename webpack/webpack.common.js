@@ -11,14 +11,12 @@ export default {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src/components'),
+      '@app': path.resolve(__dirname, 'src/app'),
       '@pages': path.resolve(__dirname, 'src/pages'),
-      '@store': path.resolve(__dirname, 'src/store'),
-      '@utils': path.resolve(__dirname, 'src/utils'),
-      '@hooks': path.resolve(__dirname, 'src/hooks'),
-      '@api': path.resolve(__dirname, 'src/api'),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@widgets': path.resolve(__dirname, 'src/widgets'),
+      '@features': path.resolve(__dirname, 'src/features'),
+      '@entities': path.resolve(__dirname, 'src/entities'),
+      '@shared': path.resolve(__dirname, 'src/shared'),
     },
   },
 
@@ -42,7 +40,7 @@ export default {
       },
 
       {
-        test: /\.module\.css$/,
+        test: /\.module\.scss$/,
         use: [
           'style-loader',
           {
@@ -52,23 +50,54 @@ export default {
               esModule: false,
             },
           },
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: `@use "@shared/styles/inject" as *;`,
+            },
+          },
         ],
       },
 
       {
-        test: /\.css$/,
-        exclude: /\.module\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.scss$/,
+        exclude: /\.module\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      // {
+      //   test: /\.module\.css$/,
+      //   use: [
+      //     'style-loader',
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: true,
+      //         esModule: false,
+      //       },
+      //     },
+      //   ],
+      // },
+
+      // {
+      //   test: /\.css$/,
+      //   exclude: /\.module\.css$/,
+      //   use: ['style-loader', 'css-loader'],
+      // },
 
       {
-        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        test: /\.(png|jpe?g|gif|webp)$/i,
         type: 'asset/resource',
       },
 
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        type: 'javascript/auto',
+        use: ['@svgr/webpack'],
       },
     ],
   },

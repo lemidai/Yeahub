@@ -1,5 +1,8 @@
+import { sessionReducer } from '@/entities/session/model/sessionSlice';
+import { baseApi } from '@/shared/api/baseApi';
 import { combineReducers } from '@reduxjs/toolkit';
 
 export const rootReducer = combineReducers({
-  questions: {},
+  session: sessionReducer,
+  [baseApi.reducerPath]: baseApi.reducer,
 });

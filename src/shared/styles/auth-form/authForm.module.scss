@@ -1,0 +1,7 @@
+.linkWrapper {
+  display: flex;
+  justify-content: end;
+  .link {
+    color: $link-color;
+  }
+}
