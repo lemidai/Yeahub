@@ -9,7 +9,7 @@ export const createBaseQuery = (
   options?: CreateBaseQueryOptions
 ): BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> => {
   return fetchBaseQuery({
-    baseUrl: '/',
+    baseUrl: '/api',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const accessToken = options?.getAccessToken?.(getState());
