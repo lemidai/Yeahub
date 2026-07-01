@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://api.yeatwork.ru/api/$1"
+      "destination": "https://api.yeatwork.ru/$1"
     }
   ]
 }
