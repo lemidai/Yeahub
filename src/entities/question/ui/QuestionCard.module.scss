@@ -1,7 +1,10 @@
+.container {
+    cursor: pointer;
+}
+
 .title {
     position: relative;
     padding-left: 16px;
-    cursor: pointer;
     &::before {
         position: absolute;
         top: 7px;

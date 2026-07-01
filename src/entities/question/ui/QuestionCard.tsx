@@ -14,7 +14,7 @@ export const QuestionsCard = ({ data }: Props) => {
     dispatch(openModal({ type: 'shortAnswer', props: { data } }));
   };
   return (
-    <div onClick={handleOpenModal}>
+    <div className={styles.container} onClick={handleOpenModal}>
       <p className={styles.title}>{title}</p>
     </div>
   );
