@@ -1,0 +1,33 @@
+.container {
+    max-width: 1200px;
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    padding: 20px 10px 40px;
+    justify-content: center; 
+    gap: 40px;
+    @include tablet {
+        margin: 0 auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+.toggleFilters {
+    display: none;
+    align-self: flex-end;
+    position: sticky;
+    padding: 4px;
+    background-color: $color-white;
+    border-radius: $radius-m;
+    padding: 8px;
+    box-shadow: 
+    0 0 20px rgba($btn-primary-bg, 0.3),
+    0 0 60px rgba($btn-primary-bg, 0.1);     
+    top: 100px;
+    z-index: 999;
+    @include tablet {
+        display: inline-block;
+    }
+}

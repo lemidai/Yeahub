@@ -1,0 +1,60 @@
+.questionsContainer {
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+    flex-grow: 1;
+    border-radius: 12px;
+    background-color: $color-white;
+    padding: 24px 20px 40px;
+    @include tablet {
+        padding: 24px 16px 40px
+    }
+    @include mobile {
+        padding: 20px 10px
+    }
+}
+.title {
+    @include body5;
+    padding-bottom: 20px;
+}
+.toggleFilters {
+    display: none;
+    align-self: flex-end;
+    position: fixed;
+    padding: 4px;
+    color: $color-white;
+    background-color: $btn-primary-bg;
+    border-radius: $radius-m;
+    padding: 4px;
+    z-index: 999;
+    @include tablet {
+        display: flex;
+    }
+}
+
+.toggleIcon {
+    width: 32px;
+}
+
+.questionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.question {
+    box-shadow: 0 4px 10px 0 $shadow-color;
+    border-radius: $radius-m;
+    padding: 16px 24px
+}
+
+.noQuestions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.noQuestionsText {
+    @include body4
+}

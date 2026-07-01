@@ -1,28 +1,17 @@
 import styles from './LoginPage.module.scss';
-import { Section } from '@/shared/ui/Section/Section';
-import { Link } from 'react-router-dom';
-import { LoginFormRHFZod } from '@/features/loginRHFZod/ui/LoginForm';
+import { LoginFormLazy } from '@/features/login';
+import { AuthFormSkeleton } from '@/shared/ui/AuthFormSkeleton/AuhtFormSkeleton';
+import { Suspense } from 'react';
+import { AuthFormCard } from '@/widgets/AuthFormCard/ui/AuthFormCard';
 
 export const LoginPage = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <div className={styles.authMain}>
-          <Section title="Вход в личный кабинет" headSection={false}>
-            <div className={styles.form}>
-              {/* <LoginForm /> */}
-              {/* <LoginFormRHF /> */}
-              <LoginFormRHFZod />
-            </div>
-          </Section>
-        </div>
-        <div className={styles.authExtra}>
-          <p>Нет аккаунта?</p>
-          <Link to="/auth/register" className={styles.link}>
-            Зарегистрироваться
-          </Link>
-        </div>
-      </div>
+      <AuthFormCard variant="login">
+        <Suspense fallback={<AuthFormSkeleton />}>
+          <LoginFormLazy />
+        </Suspense>
+      </AuthFormCard>
     </div>
   );
 };

@@ -1,56 +1,120 @@
-import { Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
+import clsx from 'clsx';
+import React, { useRef, useState } from 'react';
+import { useAppSelector } from '@/app/store/hooks';
+import { Button } from '@/shared/ui/Button';
 import { Icon } from '@/shared/ui/Icon/Icon';
-import { Button } from '@/shared/ui/Button/Button';
-// import { useLazyLogoutQuery } from '@/entities/session/api/sessionApi';
-import { useAppDispatch } from '@/app/store/store';
-import { removeToken } from '@/entities/session/model/sessionSlice';
-import { useLazyLogoutQuery } from '@/entities/session/registerApi';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '@/shared/config';
+import { useClickOutside } from '@/shared/lib/hooks/useClickOutside';
+import DefaultAvatar from '@shared/assets/navigation/DefaultAvatar.svg';
+import ArrowDownIcon from '@shared/assets/navigation/Vector2.svg';
 
 export const Header = () => {
-  const dispatch = useAppDispatch();
-  const [logout] = useLazyLogoutQuery();
-  const navigate = useNavigate();
+  const isAuth = useAppSelector((state) => state.session.accessToken);
+  const UserAvatar = useAppSelector((state) => state.session.userData?.avatarUrl);
+  const [openPopover, setOpenPopover] = useState<string | null>(null);
+  const navButtonRef = useRef<HTMLButtonElement>(null);
+  const authButtonRef = useRef<HTMLButtonElement>(null);
 
-  const handleLogout = async () => {
-    try {
-      await logout().unwrap();
+  const closeNav = () => setOpenPopover((prev) => (prev === 'nav' ? null : prev));
+  const closeAuth = () => setOpenPopover((prev) => (prev === 'auth' ? null : prev));
 
-      dispatch(removeToken());
-      navigate('/auth/login');
-      alert('Вы успешно вышли из аккаунта');
-    } catch {
-      dispatch(removeToken());
-      alert('Произошла ошибка, но данные очищены');
-    }
+  const navPopoverRef = useClickOutside<HTMLDivElement>(closeNav, {
+    ignoreRefs: [navButtonRef],
+  });
+  const authPopoverRef = useClickOutside<HTMLDivElement>(closeAuth, {
+    ignoreRefs: [authButtonRef],
+  });
+
+  const togglePopover = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const popoverId = e.currentTarget.dataset.popoverId ?? null;
+    setOpenPopover(openPopover === popoverId ? null : popoverId);
   };
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <Link to="/main">
-            <Icon name="logoBlackText" width={115} />
-          </Link>
-        </div>
-        <div className={styles.auth}>
-          <Button buttonType="innerLink" to="/auth/login" variant="secondary">
-            Вход
-          </Button>
-          <Button
-            buttonType="innerLink"
-            to="/auth/login"
-            variant="secondary"
-            onClick={handleLogout}
+        <Link className={styles.logo} to={ROUTES.home}>
+          <Icon name="logoBlackText" width={115} />
+        </Link>
+        <div className={styles.navigation}>
+          <div className={styles.navList}>
+            <Link to={ROUTES.questions}>База вопросов</Link>
+            <Link to={ROUTES.questions}>Тренажер</Link>
+            <Link to={ROUTES.questions}>Материалы</Link>
+          </div>
+          <button
+            className={styles.togglePopover}
+            ref={navButtonRef}
+            data-popover-id="nav"
+            onClick={togglePopover}
           >
-            Выход
-          </Button>
-          <Button buttonType="innerLink" to="/auth/register" variant="primary">
-            Регистрация
-          </Button>
+            Подготовка
+            <ArrowDownIcon className={clsx(openPopover === 'nav' && styles.arrowIcon)} />
+          </button>
+          <div
+            className={clsx(
+              styles.popover,
+              styles.navPopover,
+              openPopover === 'nav' && styles.isOpen
+            )}
+            ref={navPopoverRef}
+          >
+            <div className={styles.popoverOption}>
+              <Link to={ROUTES.questions}>База вопросов</Link>
+            </div>
+            <div className={styles.popoverOption}>
+              <Link to={ROUTES.questions}>Тренажер</Link>
+            </div>
+            <div className={styles.popoverOption}>
+              <Link to={ROUTES.questions}>Материалы</Link>
+            </div>
+          </div>
         </div>
-        <button className={styles.burger}>
-          <Icon name="burger" />
-        </button>
+        {isAuth ? (
+          <Link to={ROUTES.profile}>
+            {UserAvatar ? <img src={UserAvatar} alt="Аватар" /> : <DefaultAvatar />}
+          </Link>
+        ) : (
+          <div className={styles.auth}>
+            <div className={styles.authList}>
+              <Button buttonType="innerLink" to={ROUTES.login} variant="secondary">
+                Вход
+              </Button>
+              <Button buttonType="innerLink" to={ROUTES.signup} variant="primary">
+                Регистрация
+              </Button>
+            </div>
+            <button
+              className={styles.togglePopover}
+              ref={authButtonRef}
+              data-popover-id="auth"
+              onClick={togglePopover}
+            >
+              <Icon name="burger" size={32} />
+            </button>
+            <div
+              className={clsx(
+                styles.popover,
+                styles.authPopover,
+                openPopover === 'auth' && styles.isOpen
+              )}
+              ref={authPopoverRef}
+            >
+              <div className={styles.popoverOption}>
+                <Link className={styles.popoverOption} to={ROUTES.login}>
+                  Войти
+                </Link>
+              </div>
+              <div className={styles.popoverOption}>
+                <Link className={styles.popoverOption} to={ROUTES.signup}>
+                  Регистрация
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

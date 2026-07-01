@@ -1,0 +1,36 @@
+.filterList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0;
+    transition: display 0.5s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+    &.isShowing {
+        max-height: 1000px;
+        opacity: 1;
+        margin-top: 8px;
+    }
+}
+
+
+.filterOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid $border-color;
+    border-radius: $radius-xm;
+    padding: 8px;
+    cursor: pointer;
+    &:hover {
+    background-color: rgba($btn-primary-bg, 0.08);
+    }
+    &.selected {
+    background-color: $btn-primary-bg;
+    color: $color-white;
+  }
+}

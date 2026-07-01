@@ -1,0 +1,56 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px;
+    border: 1px solid black;
+    border-radius: $radius-l;
+    gap: 15px;
+    height: 350px;
+    justify-content: space-between;
+}
+
+.specTextWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.specCardTitle {
+    font-size: $font-size-20;
+}
+
+.specCardDescription {
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height 0.5s ease-in-out;
+    flex: 1;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    &.expanded {
+        max-height: 300px;
+        mask-image: none;
+    }
+
+}
+
+.expandTextButton {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrowIcon {
+    color: $link-color;
+    transition: transform 0.5s ease;
+    &.arrowUpIcon {
+        transform: rotateX(180deg);
+    }
+}
+
+.specCardButton {
+    padding: 0px;
+}

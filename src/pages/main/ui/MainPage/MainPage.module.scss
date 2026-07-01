@@ -1,31 +1,5 @@
-.main {
-  display: flex;
-  flex: 1;
-  /* min-height: calc(100vh - 64px); */
-  /* width: 100%; */
-  /* flex-direction: column; */
-  padding: 20px 10px 40px;
-  justify-content: center;
-  /* align-items: center; */
-  /* gap: 48px; */
-}
-
 .content {
   width: 100%;
   max-width: 1200px;
-}
-
-
-@media (min-width: 768px) {
-  .container {
-    gap: 80px;
-    padding: 30px 30px 80px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    gap: 140px;
-    padding: 30px 60px 120px;
-  }
+  gap: 80px;
 }

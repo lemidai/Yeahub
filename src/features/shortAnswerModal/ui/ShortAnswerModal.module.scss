@@ -1,0 +1,49 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.675rem;
+
+    .fullAnswerLink {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        color: $link-color;
+        align-self: flex-end;
+        font-weight: $font-weight-sb;
+    }
+}
+
+.shortAnswerTitle {
+  @include body5-accent;
+  padding-bottom: 1.5rem;
+}
+
+.propsWrapper {
+  align-self: flex-start;
+}
+
+.propsList {
+  display: flex;
+  gap: 20px;
+}
+
+.prop {
+  display: flex;
+  gap: 4px;
+  background-color: $main-bg;
+  padding: 6px 10px;
+  border-radius: $radius-m;
+}
+
+.propValue {
+  color: $color-white;
+  background-color: $link-color;
+  padding: 0 4px;
+  border-radius: $radius-s;
+}
+
+.vector {
+  transform: rotate(180deg);
+}
+

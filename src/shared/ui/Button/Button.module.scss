@@ -8,8 +8,14 @@
   color: white;
   background-color: $btn-primary-bg;
   cursor: pointer;
-  font-size: $font-size-16;
+  font-size: $font-size-18;
+  font-weight: $font-weight-med;
   justify-content: center;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
 
 .button.primary {

@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/ui/Icon/Icon';
+import { Icon } from '@/shared/ui';
 import styles from './AuthSidebar.module.scss';
 import { Link } from 'react-router-dom';
 export const AuthSidebar = () => {

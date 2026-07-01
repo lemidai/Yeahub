@@ -1,4 +1,4 @@
-import { SESSION_SLICE_KEY } from './sessionSlice';
+import { SESSION_SLICE_KEY } from './constants';
 
 type SessionRootState = {
   [SESSION_SLICE_KEY]: {

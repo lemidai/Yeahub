@@ -11,9 +11,7 @@ const createAppBaseApi = (
     endpoints: () => ({}),
   });
 };
-
 export let baseApi!: ReturnType<typeof createAppBaseApi>;
-
 export const initBaseApi = (
   baseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>
 ) => {

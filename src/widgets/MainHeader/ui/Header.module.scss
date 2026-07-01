@@ -1,11 +1,17 @@
 .header {
   display: flex;
   justify-content: center;
-  background-color: var(--main-bg);
-  backdrop-filter: blur(8px);
+  background-color: $color-white;
+  backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  @include desktop {
+    padding: 0 30px;;
+  }
+  @include mobile {
+    padding: 0 10px;
+  }
 }
 
 .container {
@@ -15,37 +21,98 @@
   width: 100%;
   max-width: 1200px;
   padding: 8px 0;
+  gap: 40px;
+  @include desktop {
+    padding: 10px 0;
+  }
+  @include tablet {
+    padding: 15px 0
+  }
+}
+
+.logo {
+  @include mobileS {
+    display: none;
+  }
+}
+
+.navigation {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 20px;
+  margin-right: auto; 
+}
+
+.navList {
+  display: flex;
+  gap: 16px;
+  @include tablet {
+    display: none;
+  }
+}
+
+.togglePopover {
+    display: none;
+    @include tablet {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+}
+
+.arrowIcon {
+  transform: rotate(180deg);
+}
+
+.popover {
+  display: none;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  z-index: 2;
+  flex-direction: column;
+  padding: 8px 4px;
+  border-radius: $radius-s;
+  background-color: $color-white;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);  
+}
+
+.navPopover {
+  transform: translateX(-10%) translateY(24px);
+}
+
+
+.popoverOption {
+  min-width: 162px;
+  padding: 6px 10px; 
+  &:hover {
+    color: $link-color;
+  }
+  &:active {
+    background-color: $main-bg;
+  }
 }
 
 .auth {
   display: flex;
+  position: relative;
+  align-items: center;
   gap: 20px;
 }
 
-.burger{
+.authList {
+  display: flex;
+  gap: 16px;
+  @include tablet {
     display: none;
-  }
-
-@media (max-width: 768px) {
-  .header {
-    padding: 0 10px;
-  }
-  .container {
-    padding: 10px 0;
-  }
-  .auth {
-    display: none;
-  }
-  .burger{
-    display: block;
   }
 }
 
-@media (max-width: 1200px) {
-  .header {
-    padding: 0 30px;
-  }
-  .container {
-    padding: 15px 0;
-  }
+.authPopover {
+  transform: translateX(-70%) translateY(18px);
+}
+
+.isOpen {
+  display: block;
 }

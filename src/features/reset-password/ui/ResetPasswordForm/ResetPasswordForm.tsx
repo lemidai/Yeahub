@@ -1,21 +1,13 @@
-import { Input } from '@/shared/ui/Input/Input';
-import { Button } from '@/shared/ui/Button/Button';
+import { authFormStyles } from '@/shared/styles';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import z from 'zod';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '@/app/store/store';
 import { isFetchBaseQueryError, isSerializedError } from '@/shared/api/types';
 import { useLazyResetPasswordQuery } from '../../api/resetPasswordApi';
-import { useState } from 'react';
-import { Modal } from '@/shared/ui/Modal/Modal';
-
-const emailSchema = z.email('Неверный фомат почты');
-const resetPasswordFormSchema = z.object({
-  email: emailSchema,
-});
-
-type resetPasswordFormState = z.input<typeof resetPasswordFormSchema>;
+import { openModal } from '@/app/store/slices/modalSlice/modalSlice';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { useAppDispatch } from '@/app/store/hooks';
+import { resetPasswordFormSchema, resetPasswordFormState } from '../../model/resetPasswordSchema';
 
 export const ResetPasswordForm = () => {
   const {
@@ -28,17 +20,14 @@ export const ResetPasswordForm = () => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-  const [resetPassword, { isLoading }] = useLazyResetPasswordQuery();
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [resetPassword] = useLazyResetPasswordQuery();
+  const dispatch = useAppDispatch();
 
   const onSubmit = async (data: resetPasswordFormState) => {
+    const sendLetter = () => resetPassword(data.email).unwrap();
     try {
-      const token = await resetPassword(data.email).unwrap();
-      setIsOpen(true);
-      // navigate('/');
-      // alert(token.message);
-      // alert('Письмо отправлено на почту');
+      await sendLetter();
+      dispatch(openModal({ type: 'resetPassword', props: { sendLetter } }));
     } catch (error) {
       if (isFetchBaseQueryError(error)) {
         if (error.status === 403) {
@@ -62,15 +51,16 @@ export const ResetPasswordForm = () => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h3 style={{ textAlign: 'center' }}>REACT HOOK FORM + ZOD</h3>
+      <form className={authFormStyles.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
           label="Почта"
           placeholder="Введите почту"
           error={errors.email?.message}
           {...register('email')}
         />
-        {errors.root?.message && <div>{errors.root.message}</div>}
+        {errors.root?.message && (
+          <div className={authFormStyles.formError}>{errors.root.message}</div>
+        )}
         <Button buttonType="button" type="submit" variant="primary" fullWidth>
           Восстановить пароль
         </Button>

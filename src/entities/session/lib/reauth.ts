@@ -1,7 +1,7 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { AUTH_PATHS, AUTH_PATHS_MAP } from '../model/constants';
-import { removeToken, setToken } from '../model/sessionSlice';
-import { EnterResponse } from '../model/types';
+import { removeSession, setSession } from '../model/sessionSlice';
+import { AuthResponse } from '../model/types';
 
 type FetchArgsType = {
   url: string;
@@ -40,16 +40,15 @@ export const withReauth = (
         throw new Error('Обновление токена не удалось');
       }
 
-      const accessToken = (refreshResult.data as EnterResponse | undefined)?.access_token;
+      const accessToken = (refreshResult.data as AuthResponse | undefined)?.access_token;
       if (accessToken) {
         throw new Error('Токен доступа отсутствует');
       }
 
-      api.dispatch(setToken({ accessToken: accessToken }));
+      api.dispatch(setSession({ accessToken: accessToken }));
       result = await baseQuery(args, api, extraOptions);
     } catch {
-      // console.log('Ошибка при обновлении токена', error.message);
-      api.dispatch(removeToken());
+      api.dispatch(removeSession());
     }
 
     return result;

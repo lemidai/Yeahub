@@ -120,6 +120,24 @@
   font-weight: $font-weight-med;
 }
 
+@mixin body7 {
+  font-size: $font-size-28;
+  line-height: $line-height-127;
+  font-weight: $font-weight-med;
+}
+
+@mixin body7-strong {
+  font-size: $font-size-28;
+  line-height: $line-height-127;
+  font-weight: $font-weight-sb;
+}
+
+@mixin body8 {
+  font-size: $font-size-40;
+  line-height: $line-height-127;
+  font-weight: $font-weight-med;
+}
+
 // ==========================================================================
 // МЕДИА-МИКСИНЫ
 // ==========================================================================

@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/store';
-import { setBootstrapped, setToken } from '@/entities/session/model/sessionSlice';
+import { setBootstrapped, setSession } from '@/entities/session/model/sessionSlice';
 import { useLazyRefreshQuery } from '@/entities/session/registerApi';
 
 type BootstrapType = {
@@ -28,7 +28,7 @@ export const Bootstrap = ({ children }: BootstrapType) => {
       .unwrap()
       .then((data) => {
         if (!cancelled) {
-          dispatch(setToken(data));
+          dispatch(setSession(data));
         }
       })
       .catch(() => {

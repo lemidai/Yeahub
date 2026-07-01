@@ -1,5 +1,7 @@
 import { baseApi } from '@/shared/api/baseApi';
-import { EnterResponse, LogoutResponse } from '../model/types';
+import { AuthResponse, LogoutResponse } from '../model/types';
+import { AUTH_PATHS_MAP } from '../model/constants';
+import { removeSession } from '../model/sessionSlice';
 
 export function injectSessionApi() {
   if (!baseApi) {
@@ -10,24 +12,24 @@ export function injectSessionApi() {
 
   return baseApi.injectEndpoints({
     endpoints: (build) => ({
-      // login: build.mutation({
-      //   query: (body) => ({
-      //     url: '/auth/login',
-      //     method: 'POST',
-      //     body,
-      //   }),
-      // }),
-      refresh: build.query<EnterResponse, void>({
+      refresh: build.query<AuthResponse, void>({
         query: () => ({
-          url: '/auth/refresh',
+          url: AUTH_PATHS_MAP.refresh,
           method: 'GET',
         }),
       }),
       logout: build.query<LogoutResponse, void>({
         query: () => ({
-          url: '/auth/logout',
+          url: AUTH_PATHS_MAP.logout,
           method: 'GET',
         }),
+        async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+          try {
+            await queryFulfilled;
+          } finally {
+            dispatch(removeSession());
+          }
+        },
       }),
     }),
   });

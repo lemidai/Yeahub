@@ -1,4 +1,4 @@
-export type EnterResponse = {
+export type AuthResponse = {
   access_token: string;
   user: {
     id: string;
@@ -21,6 +21,8 @@ export type EnterResponse = {
     isEmailNotificationsEnable: boolean;
   };
 };
+
+export type User = AuthResponse['user'];
 
 export type LogoutResponse = {
   message: string;

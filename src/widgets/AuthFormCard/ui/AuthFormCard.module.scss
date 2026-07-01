@@ -1,0 +1,44 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 442px;
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  @include body8;
+  margin-bottom: 28px;
+  text-align: center;
+  @include mobileS {
+    @include body7
+  }
+}
+
+.content {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.3;
+  @include mobile {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
+.cardFooter {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: $background-skeleton;
+  margin-top: auto;
+  border-radius: 12px;
+  padding: 16px;
+  .link {
+    color: $link-color;
+  }
+  @include mobileS {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+}

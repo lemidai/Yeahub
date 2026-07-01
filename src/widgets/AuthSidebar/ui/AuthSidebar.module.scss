@@ -1,13 +1,14 @@
 .authSidebar {
     display: flex;
-    flex: 1 0 42%;
+    flex: 0 0 42%;
+    max-width: 520px;
     background-color: $btn-primary-bg;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 70px 0;
     color: #FFFFFF;
-    @include mobile {
+    @include tablet {
         display: none
     }
 }

@@ -1,0 +1,44 @@
+.section {
+  width: 100%;
+  padding: clamp(40px, 6vw, 80px) 0;
+  box-sizing: border-box;
+}
+
+.container {
+    @include flex-column;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.sectionTitle {
+    font-size: clamp(20px, 6vw, 60px);
+    text-transform: uppercase;
+    font-weight: $font-weight-med;
+}
+
+.description {
+    @include mobile {
+        font-size: $font-size-14;
+    }
+}
+
+.desktopBreak {
+    @include mobile {
+        display: none;
+    }
+}
+
+.mobileBreak {
+    display: none;
+    @include mobile {
+        display: block;
+    }
+}
+
+.sectionButton {
+    padding: 0 48px;
+    @include mobile {
+        padding: 0 28px;
+    }
+}

@@ -11,6 +11,10 @@
     color: $text-input;
 }
 
+.inputContainer {
+    position: relative;
+}
+
 .input {
     border: 1px solid #E8E8E8;
     border-radius: 12px;
@@ -20,10 +24,25 @@
     background: $color-white;
     width: 100%;
     max-width: 100%;
+    &:hover {
+        border: 1px solid $border-input-hover;
+    }
+    &:focus {
+        border: 1px solid $border-input;
+    }
+    &.inputError {
+        border-color: #ff0000;
+    }
 }
 
-.inputError {
-    border-color: #ff0000;
+
+.hideButton {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
 }
 
 .errorText {

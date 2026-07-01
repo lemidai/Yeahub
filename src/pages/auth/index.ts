@@ -1,2 +1,3 @@
 export { LoginPage } from './ui/LoginPage/LoginPage';
-export { RegisterPage } from './ui/RegisterPage/RegisterPage';
+export { SignUpPage } from './ui/SingUpPage/SingUpPage';
+export { ResetPasswordPage } from './ui/ResetPasswordPage/ResetPasswordPage';

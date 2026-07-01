@@ -1,0 +1,43 @@
+.filtersContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    min-width: 360px;
+    border-radius: 12px;
+    background-color: $color-white;
+    position: sticky;
+    top: 80px;
+    gap: 24px;
+    @include tablet {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        border-radius: 0;
+        display: none;
+        &.isOpen {
+            display: block;
+            z-index: 999;
+        }
+    }
+    @include mobileS {
+        min-width: 100%;
+    }
+}
+
+.closeFilters {
+    display: block;
+    margin-left: auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 12px;
+    max-height: 93vh;
+    overflow: auto;
+    @include tablet {
+        position: fixed;
+    }
+}

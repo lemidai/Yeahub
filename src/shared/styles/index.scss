@@ -1,23 +1,13 @@
 @use 'base/reset.scss' as *;
 @use 'config/variables.scss' as *;
 
-// @import './variables.css';
-// @import './reset.css';
-// @import './global.css';
-// @import './fonts.css';
-
-// body {
-//   background-color: var(--main-bg);
-//   line-height: 140%;
-//   font-family: var(--font-family);
-//   font-size: var(--font-size-l);
-//   font-weight: var(--font-weight-med);
-// }
-
 body {
   background-color: $main-bg;
-  line-height: 1.4;  // 140% = 1.4
+  line-height: 1.4;
   font-family: $font-family;
-  font-size: $font-size-16;  // или $font-size-l, если создадите такую переменную
+  font-size: $font-size-16;
   font-weight: $font-weight-reg;
+  &.no-scroll {
+    overflow: hidden;
+  }
 }

@@ -6,7 +6,7 @@ interface IconProps {
   size?: number | string;
   width?: number | string;
   height?: number | string;
-  className?: string; // Полезно добавить для кастомизации стилей (например, через Tailwind)
+  className?: string;
 }
 
 export const Icon: React.FC<IconProps> = ({ name, size = 24, width, height, className }) => {

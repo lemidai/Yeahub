@@ -1,8 +1,8 @@
 import './initAppStore';
 import './registerApiEndpoints';
+import { baseApi } from '@/shared/api/baseApi';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './rootReducer';
-import { baseApi } from '@/shared/api/baseApi';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
