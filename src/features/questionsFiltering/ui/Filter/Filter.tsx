@@ -26,7 +26,9 @@ export const Filter = ({ list, title, selector, action }: Props) => {
 
   return (
     <div>
-      <h3 onClick={() => setIsOpen((p) => !p)}>{title}</h3>
+      <h3 className={styles.filterTitle} onClick={() => setIsOpen((p) => !p)}>
+        {title}
+      </h3>
       <ul className={clsx(styles.filterList, isOpen && styles.isShowing)}>
         {list?.map((option) => (
           <li
