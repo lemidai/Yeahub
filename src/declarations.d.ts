@@ -15,6 +15,6 @@ declare module '*.svg';
 
 declare const process: {
   env: {
-    BASE_API_URL: string;
+    REACT_APP_API_URL: string;
   };
 };

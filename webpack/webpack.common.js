@@ -1,6 +1,7 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
+import { webpack } from 'webpack';
 
 const __dirname = path.resolve();
 
@@ -64,26 +65,6 @@ export default {
         exclude: /\.module\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      // {
-      //   test: /\.module\.css$/,
-      //   use: [
-      //     'style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         modules: true,
-      //         esModule: false,
-      //       },
-      //     },
-      //   ],
-      // },
-
-      // {
-      //   test: /\.css$/,
-      //   exclude: /\.module\.css$/,
-      //   use: ['style-loader', 'css-loader'],
-      // },
-
       {
         test: /\.(png|jpe?g|gif|webp)$/i,
         type: 'asset/resource',
@@ -109,6 +90,9 @@ export default {
     }),
 
     new Dotenv(),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL),
+    }),
   ],
 
   stats: 'errors-only',

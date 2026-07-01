@@ -1,6 +1,7 @@
 import path from 'path';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
+import { webpack } from 'webpack';
 
 const __dirname = path.resolve();
 
@@ -15,6 +16,11 @@ export default merge(common, {
     clean: true,
     publicPath: '/',
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL),
+    }),
+  ],
 
   optimization: {
     splitChunks: {
