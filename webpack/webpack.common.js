@@ -1,7 +1,7 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
-import { webpack } from 'webpack';
+import webpack from 'webpack';
 
 const __dirname = path.resolve();
 

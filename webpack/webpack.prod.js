@@ -1,7 +1,7 @@
 import path from 'path';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
-import { webpack } from 'webpack';
+import webpack from 'webpack';
 
 const __dirname = path.resolve();
 
